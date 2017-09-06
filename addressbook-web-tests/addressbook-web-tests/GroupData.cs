@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    class GroupData
+    public class GroupData
     {
         private string _name;
         private string _header = "";
         private string _footer = "";
 
-        /*public GroupData(string name, string header, string footer)
+        public GroupData(string name, string header, string footer)
         {
             Name = name;
             Header = header;
             Footer = footer;
-        }*/
+        }
         public GroupData(string name)
         {
             Name = name;

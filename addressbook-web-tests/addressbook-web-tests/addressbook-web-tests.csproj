@@ -65,11 +65,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AccountData.cs" />
+    <Compile Include="Additional Classes\AccountData.cs" />
+    <Compile Include="Tests\ContactCreationTests.cs" />
+    <Compile Include="Additional Classes\Emails.cs" />
     <Compile Include="GroupData.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GroupCreationTests.cs" />
+    <Compile Include="Tests\GroupCreationTests.cs" />
+    <Compile Include="Additional Classes\SecondaryAddress.cs" />
+    <Compile Include="Additional Classes\TypeOfPhoneNumbers.cs" />
+    <Compile Include="Additional Classes\UserData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
