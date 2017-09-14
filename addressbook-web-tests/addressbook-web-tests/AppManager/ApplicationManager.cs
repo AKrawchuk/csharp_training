@@ -12,7 +12,6 @@ namespace WebAddressbookTests
     public class ApplicationManager
     {
         protected IWebDriver driver;
-        private StringBuilder verificationErrors;
         protected string baseURL;
 
         protected LoginHelper loginHelper;
@@ -28,7 +27,6 @@ namespace WebAddressbookTests
             driver = new FirefoxDriver(options);
 
             baseURL = "http://localhost/";
-            verificationErrors = new StringBuilder();
 
             loginHelper = new LoginHelper(driver);
             navHelper = new NavigationHelper(driver, baseURL);

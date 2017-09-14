@@ -16,16 +16,18 @@ namespace WebAddressbookTests
         {
         }
 
-        public void AddNewContactClick()
+        public ContactHelper AddNewContactClick()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
 
-        public void SaveNewContactClick()
+        public ContactHelper SaveNewContactClick()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
-        public void UserInfo(UserData user)
+        public ContactHelper UserInfo(UserData user)
         {
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(user.FirstName);
@@ -66,6 +68,8 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("phone2")).SendKeys(user.SecondaryHome);
             driver.FindElement(By.Name("notes")).Clear();
             driver.FindElement(By.Name("notes")).SendKeys(user.Notes);
+
+            return this;
         }
     }
 }
