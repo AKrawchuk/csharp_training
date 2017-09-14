@@ -3,26 +3,26 @@
   <Class Name="WebAddressbookTests.TestBase">
     <Position X="6.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAICAAQAIABAQAAAAAAAAALAAAAJMAAAAEAQAABAACA=</HashCode>
+      <HashCode>AAAAAAQAIAAAAAAAAAAAAATAAAAAAAAAABCAAIAAACA=</HashCode>
       <FileName>TestBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WebAddressbookTests.ContactCreationTests">
-    <Position X="9.75" Y="1" Width="1.5" />
+  <Class Name="WebAddressbookTests.ContactCreationTests" Collapsed="true">
+    <Position X="9" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAABAAAAAAAAACAAAAAAAAAAAAgAQAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Tests\ContactCreationTests.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WebAddressbookTests.GroupCreationTests">
-    <Position X="8.5" Y="3.25" Width="1.5" />
+  <Class Name="WebAddressbookTests.GroupCreationTests" Collapsed="true">
+    <Position X="9" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tests\GroupCreationTests.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WebAddressbookTests.GroupRemovalTests">
-    <Position X="8" Y="4.75" Width="1.5" />
+  <Class Name="WebAddressbookTests.GroupRemovalTests" Collapsed="true">
+    <Position X="9" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tests\GroupRemovalTest.cs</FileName>

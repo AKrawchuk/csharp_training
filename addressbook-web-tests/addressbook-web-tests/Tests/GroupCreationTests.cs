@@ -15,18 +15,18 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            OpenHomePage(baseURL + "addressbook/");
-            Login(new AccountData("admin", "secret"));
-            GoToGroupsPage();
-            InitGroupCreation();
+            app.Navigator.OpenHomePage();
+            app.Auth.Login(new AccountData("admin", "secret"));
+            app.Navigator.GoToGroupsPage();
+            app.Groups.InitGroupCreation();
             GroupData group = new GroupData("qwerty");
             group.Header = "asdfgh";
             group.Footer = "zxcvb";
-            FillGroupForm(group);
+            app.Groups.FillGroupForm(group);
 
-            SubmitGroupCreation();
-            ReturnToGroupsPage();
-            Logout();
+            app.Groups.SubmitGroupCreation();
+            app.Navigator.ReturnToGroupsPage();
+            app.Auth.Logout();
         }
     }
 }
