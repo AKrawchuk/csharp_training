@@ -11,8 +11,8 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper (IWebDriver driver)
-            : base(driver)
+        public ContactHelper (ApplicationManager manager)
+            : base(manager)
         {
         }
 
@@ -69,6 +69,21 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("notes")).Clear();
             driver.FindElement(By.Name("notes")).SendKeys(user.Notes);
 
+            return this;
+        }
+        public ContactHelper EditContactClick(int v)
+        {
+            driver.FindElement(By.XPath("//*[@id='maintable']/tbody/tr[" + v + "]/td[8]/a/img")).Click();
+            return this;
+        }
+        public ContactHelper DeleteContactClick()
+        {
+            driver.FindElement(By.XPath("//*[@id='content']/form[2]/input[2]")).Click();
+            return this;
+        }
+        public ContactHelper UpdateContactClick()
+        {
+            driver.FindElement(By.XPath("//*[@id='content']/form[1]/input[22]")).Click();
             return this;
         }
     }
