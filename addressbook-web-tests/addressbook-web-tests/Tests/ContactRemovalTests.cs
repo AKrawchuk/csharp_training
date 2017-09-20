@@ -11,14 +11,15 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactRemovalTests : TestBase
+    public class ContactRemovalTests : AuthTestBase
     {
         [Test]
         public void ContactRemovalTest()
         {
             app.Contacts
-                .EditContactClick(6)
+                .EditContactClick(1)
                 .DeleteContactClick();
+            app.Navigator.OpenHomePage();
             app.Auth.Logout();
         }
     }
