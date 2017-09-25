@@ -16,13 +16,36 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-            app.Groups.RemoveWise(0);
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.RemoveAt(0);
+            GroupData group = new GroupData("New Group");
+            group.Header = "header";
+            group.Footer = "footer";
 
+            //List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            /*if (app.Groups.IsGroupPresentInList())                          //-------- не понимаю почему не перехватывает try catch (NoSuchElementException)
+            {                                                                 //-------- описанная в IsGroupPresentInList -> IsElementPresent
+                app.Groups.Remove(0);
+            }
+            else                                                                    
+            {
+                app.Groups.Create(group);
+                app.Groups.Remove(0);
+            }*/
+
+            try
+            {
+                app.Groups.Remove(0);
+            }
+            catch (NoSuchElementException)
+            {
+                app.Groups.Create(group);
+                app.Groups.Remove(0);
+            }
+
+            //List<GroupData> newGroups = app.Groups.GetGroupList();
+            //oldGroups.RemoveAt(0);
             
-            Assert.AreEqual(oldGroups, newGroups);
+            //Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

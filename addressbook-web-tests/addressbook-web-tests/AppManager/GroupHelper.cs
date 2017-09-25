@@ -16,27 +16,7 @@ namespace WebAddressbookTests
         {
         }
 
-
-        public GroupHelper RemoveWise(int v)
-        {
-            GroupData group = new GroupData("New Group");
-            group.Header = "header";
-            group.Footer = "footer";
-
-            try
-            {
-                RemoveGroup(v);
-                return this;
-            }
-            catch (NoSuchElementException)
-            {
-                Create(group);
-                RemoveGroup(v);
-                return this;
-            }
-        }
-
-        public  List<GroupData> GetGroupList()
+        public List<GroupData> GetGroupList()
         {
             List<GroupData> groups = new List<GroupData>();
             manager.Navigator.GoToGroupsPage();
@@ -48,7 +28,7 @@ namespace WebAddressbookTests
             return groups;
         }
 
-        private void RemoveGroup(int v)
+        public void Remove(int v)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
@@ -56,26 +36,12 @@ namespace WebAddressbookTests
             ReturnToGroupsPage();
         }
 
-        public GroupHelper ModifyWise(int v, GroupData newData)
+        public bool IsGroupPresentInList()
         {
-            GroupData group = new GroupData("New Group");
-            group.Header = "header";
-            group.Footer = "footer";
-
-            try
-            {
-                ModifyGroup(v, newData);
-                return this;
-            }
-            catch (NoSuchElementException)
-            {
-                Create(group);
-                ModifyGroup(v, newData);
-                return this;
-            }
+            return IsElementPresent(By.Name("selected[]"));
         }
 
-        private void ModifyGroup(int v, GroupData newData)
+        public void Modify(int v, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);

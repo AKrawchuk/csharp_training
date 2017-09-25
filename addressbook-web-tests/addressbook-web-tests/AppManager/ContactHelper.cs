@@ -55,37 +55,28 @@ namespace WebAddressbookTests
         }
         public ContactHelper EditContactClick(int v)
         {
-            try
-            {
-                driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + v + "]")).Click();
-                return this;
-            }
-            catch (NoSuchElementException)
-            {
-                AddNewContactClick();
-                UserInfo(new UserData("FirstName", "LastName", "380504341555"));
-                SaveNewContactClick();
-                driver.Navigate().GoToUrl("http://localhost/addressbook/");
-
-                driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + v + "]")).Click();
-                return this;
-            }
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + v + "]")).Click();
+            return this;
         }
+
         public ContactHelper DeleteContactClick()
         {
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/input[2]")).Click();
             return this;
         }
+
         public ContactHelper UpdateContactClick()
         {
             driver.FindElement(By.XPath("//input[@value='Update']")).Click();
             return this;
         }
+
         public ContactHelper SelectAllContactsInList()
         {
             driver.FindElement(By.Id("MassCB")).Click();
             return this;
         }
+
         public ContactHelper DeleteContactsInList()
         {
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
