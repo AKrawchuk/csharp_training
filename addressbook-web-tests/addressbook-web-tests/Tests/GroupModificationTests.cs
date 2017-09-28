@@ -24,21 +24,12 @@ namespace WebAddressbookTests
             newData.Header = "12344567889";
             newData.Footer = null;
 
-            /*if (app.Groups.IsGroupPresentInList())                          //-------- не понимаю почему не перехватывает try catch (NoSuchElementException)
-            {                                                                 //-------- описанная в IsGroupPresentInList -> IsElementPresent
+            app.Navigator.GoToGroupsPage();
+            if (app.Groups.IsGroupPresentInList())                          
+            {                                                                 
                 app.Groups.Modify(0, newData);
             }
             else                                                                    
-            {
-                app.Groups.Create(group);
-                app.Groups.Modify(0, newData);
-            }*/
-
-            try
-            {
-                app.Groups.Modify(0, newData);
-            }
-            catch (NoSuchElementException)
             {
                 app.Groups.Create(group);
                 app.Groups.Modify(0, newData);

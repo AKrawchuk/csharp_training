@@ -22,21 +22,12 @@ namespace WebAddressbookTests
 
             //List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            /*if (app.Groups.IsGroupPresentInList())                          //-------- не понимаю почему не перехватывает try catch (NoSuchElementException)
-            {                                                                 //-------- описанная в IsGroupPresentInList -> IsElementPresent
+            app.Navigator.GoToGroupsPage();
+            if (app.Groups.IsGroupPresentInList())                          
+            {                                                                 
                 app.Groups.Remove(0);
             }
             else                                                                    
-            {
-                app.Groups.Create(group);
-                app.Groups.Remove(0);
-            }*/
-
-            try
-            {
-                app.Groups.Remove(0);
-            }
-            catch (NoSuchElementException)
             {
                 app.Groups.Create(group);
                 app.Groups.Remove(0);

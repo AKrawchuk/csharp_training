@@ -16,29 +16,29 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            try
+            if (app.Contacts.IsContactPresentInList())
             {
-                app.Contacts
-                .EditContactClick(1)
-                .UserInfo(new UserData("FirstName_Modified", "LastName_Modified", "380504341555_Modified"))
-                .UpdateContactClick();
-                app.Navigator.OpenHomePage();
-                app.Auth.Logout();
+                ContactModificationSequence();
             }
-            catch (NoSuchElementException)
+            else
             {
                 app.Contacts.AddNewContactClick();
                 app.Contacts.UserInfo(new UserData("FirstName", "LastName", "380504341555"));
                 app.Contacts.SaveNewContactClick();
                 app.Navigator.OpenHomePage();
 
-                app.Contacts
-                .EditContactClick(1)
-                .UserInfo(new UserData("FirstName_Modified", "LastName_Modified", "380504341555_Modified"))
-                .UpdateContactClick();
-                app.Navigator.OpenHomePage();
-                app.Auth.Logout();
+                ContactModificationSequence();
             }
+        }
+
+        private void ContactModificationSequence()
+        {
+            app.Contacts
+               .EditContactClick(1)
+               .UserInfo(new UserData("FirstName_Modified", "LastName_Modified", "380504341555_Modified"))
+               .UpdateContactClick();
+            app.Navigator.OpenHomePage();
+            app.Auth.Logout();
         }
     }
 }
