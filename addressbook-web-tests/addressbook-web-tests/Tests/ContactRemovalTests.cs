@@ -16,23 +16,14 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            if (app.Contacts.IsContactPresentInList())
-            {
-                ContactRemoveSequence();
-            }
-            else
+            if (!app.Contacts.IsContactPresentInList())
             {
                 app.Contacts.AddNewContactClick();
                 app.Contacts.UserInfo(new UserData("FirstName", "LastName", "380504341555"));
                 app.Contacts.SaveNewContactClick();
                 app.Navigator.OpenHomePage();
-
-                ContactRemoveSequence();
             }
-        }
 
-        private void ContactRemoveSequence()
-        {
             app.Contacts
                .EditContactClick(1)
                .DeleteContactClick();

@@ -25,15 +25,11 @@ namespace WebAddressbookTests
             newData.Footer = null;
 
             app.Navigator.GoToGroupsPage();
-            if (app.Groups.IsGroupPresentInList())                          
-            {                                                                 
-                app.Groups.Modify(0, newData);
-            }
-            else                                                                    
+            if (!app.Groups.IsGroupPresentInList())                          
             {
                 app.Groups.Create(group);
-                app.Groups.Modify(0, newData);
             }
+            app.Groups.Modify(0, newData);
         }
     }
 }
