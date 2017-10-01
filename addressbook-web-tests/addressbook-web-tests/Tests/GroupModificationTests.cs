@@ -24,12 +24,21 @@ namespace WebAddressbookTests
             newData.Header = "12344567889";
             newData.Footer = null;
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Navigator.GoToGroupsPage();
             if (!app.Groups.IsGroupPresentInList())                          
             {
                 app.Groups.Create(group);
+                oldGroups = app.Groups.GetGroupList();
             }
             app.Groups.Modify(0, newData);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

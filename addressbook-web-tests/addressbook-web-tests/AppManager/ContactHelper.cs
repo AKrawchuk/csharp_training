@@ -16,6 +16,18 @@ namespace WebAddressbookTests
         {
         }
 
+        public List<UserData> GetContactList()
+        {
+            List<UserData> contacts = new List<UserData>();
+            //manager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new UserData(element.Text));
+            }
+            return contacts;
+        }
+
         public ContactHelper AddNewContactClick()
         {
             driver.FindElement(By.LinkText("add new")).Click();
