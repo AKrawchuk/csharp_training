@@ -27,7 +27,9 @@ namespace WebAddressbookTests
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
-                    groupCache.Add(new GroupData(element.Text));
+                    groupCache.Add(new GroupData(element.Text) {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
             }
             return new List<GroupData>(groupCache);
@@ -44,6 +46,11 @@ namespace WebAddressbookTests
         public bool IsGroupPresentInList()
         {
             return IsElementPresent(By.Name("selected[]"));
+        }
+
+        public int GetGroupCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
         }
 
         public void Modify(int v, GroupData newData)
