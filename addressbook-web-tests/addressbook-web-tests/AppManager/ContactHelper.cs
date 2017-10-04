@@ -19,11 +19,12 @@ namespace WebAddressbookTests
         public List<UserData> GetContactList()
         {
             List<UserData> contacts = new List<UserData>();
-            //manager.Navigator.GoToGroupsPage();
             ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new UserData(element.Text));
+                string[] words = element.Text.Split();
+                var twoWords = words.Take(2);
+                contacts.Add(new UserData(twoWords.Last(), twoWords.First()));
             }
             return contacts;
         }

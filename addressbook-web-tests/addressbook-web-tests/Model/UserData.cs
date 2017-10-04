@@ -32,7 +32,7 @@ namespace WebAddressbookTests
 
         public UserData(string firstName,
                         string lastName,
-                        string cellNumber,
+                        string cellNumber = "380504341555",
                         string middleName = "MiddleName",
                         string nickName = "NickName",
                         string title = "Some Title",
@@ -97,10 +97,10 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return FirstName;
+            return FirstName + " " + LastName;
         }
 
-        public int CompareTo(UserData other)        //---------------
+        public int CompareTo(UserData other)        
         {
             if (Object.ReferenceEquals(other, null))
             {

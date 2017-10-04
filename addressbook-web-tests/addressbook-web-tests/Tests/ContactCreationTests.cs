@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Collections.Generic;
 using NUnit.Framework;
+using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -18,7 +19,7 @@ namespace WebAddressbookTests
         {
             List<UserData> oldContacts = app.Contacts.GetContactList();
 
-            UserData contact = new UserData("FirstName", "LastName", "380504341555");
+            UserData contact = new UserData("FirstName", "LastName", "380504341557");
             app.Contacts
                 .AddNewContactClick()
                 .UserInfo(contact)
