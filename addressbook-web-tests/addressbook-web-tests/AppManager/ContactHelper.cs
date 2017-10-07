@@ -23,12 +23,12 @@ namespace WebAddressbookTests
             if (contactCache == null)
             {
                 contactCache = new List<UserData>();
+                List<UserData>  contactCache1 = new List<UserData>();
                 ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
                 foreach (IWebElement element in elements)
                 {
-                    string[] words = element.Text.Split();
-                    var twoWords = words.Take(2);
-                    contactCache.Add(new UserData(twoWords.Last(), twoWords.First()));
+                    ICollection<IWebElement> cells = element.FindElements(By.TagName("td"));
+                    contactCache.Add(new UserData(cells.ElementAt(2).Text, cells.ElementAt(1).Text));
                 }
             }
             
