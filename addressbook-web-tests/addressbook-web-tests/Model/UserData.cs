@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
     public class UserData : IEquatable<UserData>, IComparable<UserData>
     {
+        private string allPhones;
+
         public UserData(string firstName,
                         string lastName,
                         string cellNumber = "380504341555",
@@ -18,13 +21,13 @@ namespace WebAddressbookTests
                         string address = "Some Address",
                         string homeNumber = "111111111", 
                         string workNumber = "22222222", 
-                        string faxNumber = "333333333",
+                        string faxNumber = "",
                         string email1 = "first e-mail", 
                         string email2 = "second e-mail", 
                         string email3 = "third e-mail", 
                         string homepage = "google.com",
                         string address2 = "Somewhere", 
-                        string secondaryHome = "Elsewhere", 
+                        string secondaryHome = "", 
                         string notes = "bla-bla-bla")
         {
             FirstName = firstName;
@@ -97,6 +100,36 @@ namespace WebAddressbookTests
         public string HomeNumber { get; set; }
         public string CellNumber { get; set; }
         public string WorkNumber { get; set; }
+        public string AllPhones
+        {
+            get
+            {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(HomeNumber) + CleanUp(CellNumber) + CleanUp(WorkNumber)).Trim();
+                }
+            }
+            set
+            {
+                allPhones = value;
+            }
+        }
+
+        private string CleanUp(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            else
+            {
+                return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            }
+        }
         public string FaxNumber { get; set; }
         public string Email1 { get; set; }
         public string Email2 { get; set; }
