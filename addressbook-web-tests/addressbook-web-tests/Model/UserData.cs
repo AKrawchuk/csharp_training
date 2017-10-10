@@ -14,21 +14,21 @@ namespace WebAddressbookTests
         public UserData(string firstName,
                         string lastName,
                         string cellNumber = "380504341555",
-                        string middleName = "MiddleName",
-                        string nickName = "NickName",
-                        string title = "Some Title",
-                        string company = "SomeCompany", 
+                        string middleName = "",
+                        string nickName = "",
+                        string title = "",
+                        string company = "", 
                         string address = "Some Address",
                         string homeNumber = "111111111", 
                         string workNumber = "22222222", 
                         string faxNumber = "",
                         string email1 = "first e-mail", 
-                        string email2 = "second e-mail", 
-                        string email3 = "third e-mail", 
+                        string email2 = "", 
+                        string email3 = "", 
                         string homepage = "google.com",
                         string address2 = "Somewhere", 
                         string secondaryHome = "", 
-                        string notes = "bla-bla-bla")
+                        string notes = "")
         {
             FirstName = firstName;
             MiddleName = middleName;
@@ -125,10 +125,7 @@ namespace WebAddressbookTests
             {
                 return "";
             }
-            else
-            {
-                return Regex.Replace(phone, "[ -()]", "") + "\r\n";
-            }
+            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
         }
         public string FaxNumber { get; set; }
         public string Email1 { get; set; }
