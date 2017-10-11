@@ -34,5 +34,43 @@ namespace WebAddressbookTests
 
             app.Auth.Logout();
         }
+
+        public static IEnumerable<UserData> RandomContactDataProvider()
+        {
+            List<UserData> contacts = new List<UserData>();
+            for (int i = 0; i < 5; i++)
+            {
+                contacts.Add(new UserData(GeneraterandomString(10))
+                {
+                    FirstName = GeneraterandomString(25),
+                    LastName = GeneraterandomString(25),
+                    Company = GeneraterandomString(25),
+                    Address = GeneraterandomString(25),
+                    HomeNumber = GeneraterandomString(25),
+                    CellNumber = GeneraterandomString(25),
+                });
+            }
+            return contacts;
+        }
+
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void DDT_ContactCreationTest(UserData contact)
+        {
+            List<UserData> oldContacts = app.Contacts.GetContactList();
+
+            app.Contacts
+                .AddNewContactClick()
+                .UserInfo(contact)
+                .SaveNewContactClick();
+            app.Navigator.OpenHomePage();
+
+            List<UserData> newContacts = app.Contacts.GetContactList();
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+
+            app.Auth.Logout();
+        }
     }
 }
