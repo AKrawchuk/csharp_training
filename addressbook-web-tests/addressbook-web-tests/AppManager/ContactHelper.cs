@@ -62,8 +62,9 @@ namespace WebAddressbookTests
             string notes = driver.FindElement(By.Name("notes")).GetAttribute("value");
 
             string detailsString = firstName;
-            string s = string.Format($"{firstName} {middleName} {lastName}\n{nickName}\n{title}\n{company}\n{address}\n\nH: {homePhone}\nM: {mobilePhone}\nW: {workPhone}\n\n{email1}\n{email2}\n{email3}\nHomepage:\n{homepage}\n\n\n{address2}\n\n{notes}");
-            Console.WriteLine(s);
+            string s = string.Format($"{firstName} {lastName}\r\n{address}\r\n\r\nH: {homePhone}\r\nM: {mobilePhone}\r\nW: {workPhone}\r\n\r\n{email1}\r\nHomepage:\r\n{homepage}\r\n\r\n\r\n{address2}");
+            //Console.WriteLine("Output from edit form -----------------------");
+            //Console.WriteLine(s);
             return s;
         }
 
@@ -71,9 +72,9 @@ namespace WebAddressbookTests
         {
             manager.Navigator.OpenHomePage();
             InitContactDetails(0);
-            //return (driver.FindElement(By.Id("content")).Text).Trim();
             string s = driver.FindElement(By.Id("content")).Text;
-            Console.WriteLine(s);
+            //Console.WriteLine("Output from deails -----------------------");
+            //Console.WriteLine(s);
             return s;
         }
 

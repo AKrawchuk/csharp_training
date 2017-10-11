@@ -29,7 +29,6 @@ namespace WebAddressbookTests
         {
             string fromEditForm = app.Contacts.GetContactInformationStringFromEditForm(0);
             string fromDetails = app.Contacts.GetContactInformationFromDetails(0);
-
             Assert.AreEqual(fromDetails, fromEditForm);
         }
     }
