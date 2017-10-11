@@ -32,6 +32,10 @@ namespace WebAddressbookTests
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
 
+            //var sortedOldContacts = oldContacts.OrderBy(t => t.FirstName).ThenBy(t => t.LastName).ToList();
+            //var sortedNewContacts = newContacts.OrderBy(t => t.FirstName).ThenBy(t => t.LastName).ToList();
+            //Assert.AreEqual(sortedOldContacts, sortedNewContacts);
+
             app.Auth.Logout();
         }
 
