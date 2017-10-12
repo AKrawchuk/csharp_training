@@ -18,6 +18,9 @@ namespace WebAddressbookTests
             Name = name;
         }
 
+        public GroupData()
+        {
+        }
         public bool Equals(GroupData other)
         {
             if (Object.ReferenceEquals(other, null))
