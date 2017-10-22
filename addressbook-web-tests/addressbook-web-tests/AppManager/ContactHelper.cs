@@ -36,7 +36,7 @@ namespace WebAddressbookTests
             return new List<UserData>(contactCache);
         }
 
-        public string GetContactInformationStringFromEditForm(int index)
+        public UserData GetContactInformationStringFromEditForm(int index)
         {
             manager.Navigator.OpenHomePage();
             InitContactModification(0);
@@ -52,30 +52,38 @@ namespace WebAddressbookTests
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string faxPhone = driver.FindElement(By.Name("fax")).GetAttribute("value");
 
             string email1 = driver.FindElement(By.Name("email")).GetAttribute("value");
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
             string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
 
-            string homepage = driver.FindElement(By.Name("homepage")).GetAttribute("value");
-            string address2 = driver.FindElement(By.Name("address2")).GetAttribute("value");
-            string notes = driver.FindElement(By.Name("notes")).GetAttribute("value");
-
-            string detailsString = firstName;
-            string s = string.Format($"{firstName} {lastName}\r\n{address}\r\n\r\nH: {homePhone}\r\nM: {mobilePhone}\r\nW: {workPhone}\r\n\r\n{email1}\r\nHomepage:\r\n{homepage}\r\n\r\n\r\n{address2}");
-            //Console.WriteLine("Output from edit form -----------------------");
-            //Console.WriteLine(s);
-            return s;
+            return new UserData(firstName, lastName)
+            {
+                Company = company,
+                Title = title,
+                NickName = nickName,
+                MiddleName = middleName,
+                Address = address,
+                FaxNumber = faxPhone,
+                HomeNumber = homePhone,
+                CellNumber = mobilePhone,
+                WorkNumber = workPhone,
+                Email1 = email1,
+                Email2 = email2,
+                Email3 = email3,
+            };
         }
 
-        public string GetContactInformationFromDetails(int index)
+        public UserData GetContactInformationFromDetails()
         {
             manager.Navigator.OpenHomePage();
             InitContactDetails(0);
-            string s = driver.FindElement(By.Id("content")).Text;
-            //Console.WriteLine("Output from deails -----------------------");
-            //Console.WriteLine(s);
-            return s;
+            var allInformation = driver.FindElement(By.Id("content")).Text;
+            return new UserData()
+            {
+                AllInfo = allInformation
+            };
         }
 
         public UserData GetContactInformationFromEditForm(int index)

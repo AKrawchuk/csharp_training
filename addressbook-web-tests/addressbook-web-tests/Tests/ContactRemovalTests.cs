@@ -20,7 +20,7 @@ namespace WebAddressbookTests
             if (!app.Contacts.IsContactPresentInList())
             {
                 app.Contacts.AddNewContactClick();
-                app.Contacts.UserInfo(new UserData("FirstName", "LastName", "380504341555"));
+                app.Contacts.UserInfo(new UserData("FirstName", "LastName"));
                 app.Contacts.SaveNewContactClick();
                 app.Navigator.OpenHomePage();
                 oldContacts = app.Contacts.GetContactList();

@@ -19,7 +19,7 @@ namespace WebAddressbookTests
         {
             List<UserData> oldContacts = app.Contacts.GetContactList();
 
-            UserData contact = new UserData("FirstName", "LastName", "380504341557");
+            UserData contact = new UserData("FirstName", "LastName");
             app.Contacts
                 .AddNewContactClick()
                 .UserInfo(contact)
@@ -32,10 +32,6 @@ namespace WebAddressbookTests
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
 
-            //var sortedOldContacts = oldContacts.OrderBy(t => t.FirstName).ThenBy(t => t.LastName).ToList();
-            //var sortedNewContacts = newContacts.OrderBy(t => t.FirstName).ThenBy(t => t.LastName).ToList();
-            //Assert.AreEqual(sortedOldContacts, sortedNewContacts);
-
             app.Auth.Logout();
         }
 
@@ -44,7 +40,7 @@ namespace WebAddressbookTests
             List<UserData> contacts = new List<UserData>();
             for (int i = 0; i < 5; i++)
             {
-                contacts.Add(new UserData(GeneraterandomString(10))
+                contacts.Add(new UserData(GeneraterandomString(10), GeneraterandomString(10))
                 {
                     FirstName = GeneraterandomString(25),
                     LastName = GeneraterandomString(25),
