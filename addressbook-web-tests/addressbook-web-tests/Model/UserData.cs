@@ -62,17 +62,14 @@ namespace WebAddressbookTests
             Notes = notes;
         }
 
-        /*public UserData(string firstName, string lastName)
+        public UserData(string firstName, string lastName)
         {
             FirstName = firstName;
             LastName = lastName;
-        }*/
-        public UserData()
-        {
-            AllInfo = allInfo;
         }
         public UserData()
         {
+            AllInfo = allInfo;
         }
 
         public bool Equals(UserData other)

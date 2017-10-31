@@ -17,10 +17,10 @@ namespace addressbook_test_data_generators
     {
         static void Main(string[] args)
         {
-            string testModule = args[0];                //group or contacts
-            int count = Convert.ToInt32(args[1]);       //count of generated objects 
-            string filename = args[2];                  //filename
-            string format = args[3];                    //fileformat xml or json
+            string testModule = args[0];                
+            int count = Convert.ToInt32(args[1]);       
+            string filename = args[2];                  
+            string format = args[3];                    
 
             if (testModule == "groups")
             {
@@ -64,11 +64,7 @@ namespace addressbook_test_data_generators
                 List<UserData> contacts = new List<UserData>();
                 for (int i = 0; i < count; i++)
                 {
-                    contacts.Add(new UserData(TestBase.GeneraterandomString(13))
-                    {
-                        CellNumber = TestBase.GeneraterandomString(10),
-                        Address = TestBase.GeneraterandomString(10)
-                    });
+                    contacts.Add(new UserData(TestBase.GeneraterandomString(13), TestBase.GeneraterandomString(13)));
                 }
                 StreamWriter writer = new StreamWriter(filename);
                 if (format == "json")
