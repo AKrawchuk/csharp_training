@@ -50,7 +50,7 @@ namespace WebAddressbookTests
 
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
-            return (List<GroupData>) new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
+            return (List<GroupData>)new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
         }
 
         public static IEnumerable<GroupData> GroupDataFromJsonFile()
@@ -83,7 +83,7 @@ namespace WebAddressbookTests
         [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void DDT_GroupCreationTest(GroupData group)
         {
-            List<GroupData> oldGroups= app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());

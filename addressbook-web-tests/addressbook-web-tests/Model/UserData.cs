@@ -57,6 +57,9 @@ namespace WebAddressbookTests
         {
             FirstName = firstName;
         }
+        public UserData()
+        {
+        }
 
         public bool Equals(UserData other)
         {

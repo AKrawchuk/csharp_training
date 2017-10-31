@@ -8,6 +8,11 @@ using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WebAddressbookTests
 {
@@ -42,7 +47,7 @@ namespace WebAddressbookTests
         public static IEnumerable<UserData> RandomContactDataProvider()
         {
             List<UserData> contacts = new List<UserData>();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 contacts.Add(new UserData(GeneraterandomString(10))
                 {
@@ -56,8 +61,36 @@ namespace WebAddressbookTests
             }
             return contacts;
         }
+        public static IEnumerable<UserData> ContactDataFromXmlFile()
+        {
+            return (List<UserData>)new XmlSerializer(typeof(List<UserData>)).Deserialize(new StreamReader(@"contacts.xml"));
+        }
 
-        [Test, TestCaseSource("RandomContactDataProvider")]
+        public static IEnumerable<UserData> GroupDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<UserData>>(File.ReadAllText(@"contacts.json"));
+        }
+
+        /*[Test, TestCaseSource("RandomContactDataProvider")]
+        public void DDT_ContactCreationTest(UserData contact)
+        {
+            List<UserData> oldContacts = app.Contacts.GetContactList();
+
+            app.Contacts
+                .AddNewContactClick()
+                .UserInfo(contact)
+                .SaveNewContactClick();
+            app.Navigator.OpenHomePage();
+
+            List<UserData> newContacts = app.Contacts.GetContactList();
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+
+            app.Auth.Logout();
+        }*/
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void DDT_ContactCreationTest(UserData contact)
         {
             List<UserData> oldContacts = app.Contacts.GetContactList();
