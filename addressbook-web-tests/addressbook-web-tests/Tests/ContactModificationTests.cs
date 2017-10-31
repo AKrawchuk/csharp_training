@@ -26,7 +26,7 @@ namespace WebAddressbookTests
                 app.Navigator.OpenHomePage();
                 oldContacts = app.Contacts.GetContactList();
             }
-            UserData contactModif = new UserData("FirstName_Modified", "LastName_Modified", "380504341556");
+            UserData contactModif = new UserData("FirstName_Modified", "LastName_Modified");
             app.Contacts
                .EditContactClick(1)
                .UserInfo(contactModif)

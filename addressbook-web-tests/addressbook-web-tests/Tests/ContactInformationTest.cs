@@ -27,9 +27,10 @@ namespace WebAddressbookTests
         [Test]
         public void TestContactInformation_EditMode_Details()
         {
-            string fromEditForm = app.Contacts.GetContactInformationStringFromEditForm(0);
-            string fromDetails = app.Contacts.GetContactInformationFromDetails(0);
-            Assert.AreEqual(fromDetails, fromEditForm);
+            UserData fromEditForm = app.Contacts.GetContactInformationStringFromEditForm(0);
+            UserData fromDetails = app.Contacts.GetContactInformationFromDetails();
+            
+            Assert.AreEqual(fromDetails.AllInfo, fromEditForm.AllInfo);
         }
     }
 }
