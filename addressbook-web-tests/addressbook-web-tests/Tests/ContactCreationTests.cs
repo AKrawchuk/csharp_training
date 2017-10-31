@@ -62,31 +62,12 @@ namespace WebAddressbookTests
             return (List<UserData>)new XmlSerializer(typeof(List<UserData>)).Deserialize(new StreamReader(@"contacts.xml"));
         }
 
-        public static IEnumerable<UserData> GroupDataFromJsonFile()
+        public static IEnumerable<UserData> ContactDataFromJsonFile()
         {
             return JsonConvert.DeserializeObject<List<UserData>>(File.ReadAllText(@"contacts.json"));
         }
 
-        /*[Test, TestCaseSource("RandomContactDataProvider")]
-        public void DDT_ContactCreationTest(UserData contact)
-        {
-            List<UserData> oldContacts = app.Contacts.GetContactList();
-
-            app.Contacts
-                .AddNewContactClick()
-                .UserInfo(contact)
-                .SaveNewContactClick();
-            app.Navigator.OpenHomePage();
-
-            List<UserData> newContacts = app.Contacts.GetContactList();
-            oldContacts.Add(contact);
-            oldContacts.Sort();
-            newContacts.Sort();
-            Assert.AreEqual(oldContacts, newContacts);
-
-            app.Auth.Logout();
-        }*/
-        [Test, TestCaseSource("GroupDataFromJsonFile")]
+        [Test, TestCaseSource("ContactDataFromXmlFile")]
         public void DDT_ContactCreationTest(UserData contact)
         {
             List<UserData> oldContacts = app.Contacts.GetContactList();
