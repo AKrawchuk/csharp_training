@@ -17,7 +17,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactCreationTests : AuthTestBase
+    public class ContactCreationTests : ContactTestBase
     {
         [Test]
         public void ContactCreationTest()
@@ -32,6 +32,27 @@ namespace WebAddressbookTests
             app.Navigator.OpenHomePage();
 
             List<UserData> newContacts = app.Contacts.GetContactList();
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+
+            app.Auth.Logout();
+        }
+
+        [Test]
+        public void ContactCreationTest_DB()
+        {
+            List<UserData> oldContacts = UserData.GetAll();                 //-----------16--------------
+
+            UserData contact = new UserData("FirstName", "LastName");
+            app.Contacts
+                .AddNewContactClick()
+                .UserInfo(contact)
+                .SaveNewContactClick();
+            app.Navigator.OpenHomePage();
+
+            List<UserData> newContacts = UserData.GetAll();                 //-----------16--------------
             oldContacts.Add(contact);
             oldContacts.Sort();
             newContacts.Sort();

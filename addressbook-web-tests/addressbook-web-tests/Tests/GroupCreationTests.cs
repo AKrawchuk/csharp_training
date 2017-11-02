@@ -12,11 +12,12 @@ using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : AuthTestBase
+    public class GroupCreationTests : GroupTestBase                     //---------16---------
     {
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
@@ -114,6 +115,24 @@ namespace WebAddressbookTests
         }
 
         [Test]
+        public void GroupCreationTest_DB()
+        {
+            GroupData group = new GroupData("qwerty317");
+            group.Header = "asdf";
+            group.Footer = "zxcv";
+            List<GroupData> oldGroups = GroupData.GetAll();             //---------16---------
+            app.Groups.Create(group);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
+            List<GroupData> newGroups = GroupData.GetAll();             //---------16---------
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        }
+
+        [Test]
         public void BadNameGroupCreationTest()
         {
             GroupData group = new GroupData("a'a");
@@ -128,6 +147,20 @@ namespace WebAddressbookTests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreNotEqual(oldGroups, newGroups);
+        }
+
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<GroupData> fromDb = GroupData.GetAll();
+            end = DateTime.Now;
+            Console.Out.WriteLine(end.Subtract(start));
         }
     }
 }

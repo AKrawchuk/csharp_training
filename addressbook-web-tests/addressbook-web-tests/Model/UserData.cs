@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using LinqToDB.Mapping;
 
 namespace WebAddressbookTests
 {
+    [Table(Name = "addressbook")]
     public class UserData : IEquatable<UserData>, IComparable<UserData>
     {
         private string allPhones;
@@ -15,10 +17,6 @@ namespace WebAddressbookTests
         private string allEmails;
         private string allEmailsNewLine;
         private string allInfo;
-        //private string homeNumber;
-        //private string workNumber;
-        //private string cellNumber;
-        //private string faxNumber;
 
         public UserData(string firstName,
                         string lastName,
@@ -107,10 +105,18 @@ namespace WebAddressbookTests
             return result;
         }
 
+        [Column(Name = "firstname")]
         public string FirstName { get; set; }
+
+        [Column(Name = "middlename")]
         public string MiddleName { get; set; }
+
+        [Column(Name = "lastname")]
         public string LastName { get; set; }
+
+        [Column(Name = "nickname")]
         public string NickName { get; set; }
+
         public string AllNames
         {
             get
@@ -137,13 +143,28 @@ namespace WebAddressbookTests
             }
             return allNames + " ";
         }
-        public string Title { get; set; }        
+
+        [Column(Name = "title")]
+        public string Title { get; set; }
+
+        [Column(Name = "company")]
         public string Company { get; set; }
+
+        [Column(Name = "address")]
         public string Address { get; set; }
+
+        [Column(Name = "home")]
         public string HomeNumber { get; set; }
+
+        [Column(Name = "mobile")]
         public string CellNumber { get; set; }
+
+        [Column(Name = "work")]
         public string WorkNumber { get; set; }
+
+        [Column(Name = "fax")]
         public string FaxNumber { get; set; }
+
         public string AllPhones
         {
             get
@@ -192,14 +213,6 @@ namespace WebAddressbookTests
                 allPhonesInfo = value;
             }
         }
-        /*private string CleanUpAllPhonesInfo(string phone)
-        {
-            if (phone == null || phone == "")
-            {
-                return "";
-            }
-            return "H: " + phone + "\r\n";
-        }*/
         private string CleanUpHomePhone(string phone)
         {
             if (phone == null || phone == "")
@@ -232,9 +245,16 @@ namespace WebAddressbookTests
             }
             return "F: " + phone + "\r\n";
         }
+
+        [Column(Name = "email")]
         public string Email1 { get; set; }
+
+        [Column(Name = "email2")]
         public string Email2 { get; set; }
+
+        [Column(Name = "email3")]
         public string Email3 { get; set; }
+
         public string AllEmails
         {
             get
@@ -279,10 +299,18 @@ namespace WebAddressbookTests
             }
             return allEmails + "\r\n";
         }
+        [Column(Name = "homepage")]
         public string Homepage { get; set; }
+
+        [Column(Name = "address2")]
         public string Address2 { get; set; }
+
+        [Column(Name = "phone2")]
         public string SecondaryHome { get; set; }
+
+        [Column(Name = "notes")]
         public string Notes { get; set; }
+
         public string AllInfo
         {
             get
@@ -299,11 +327,6 @@ namespace WebAddressbookTests
                         + CleanUpAllInfo(Company)
                         + CleanUpAllInfo(Address)
                         + CleanUpAllInfo(AllPhonesInfo)
-                        //+ CleanUpAllInfo(AllPhones)
-                        //+ CleanUpAllInfo(HomeNumber)
-                        //+ CleanUpAllInfo(WorkNumber)
-                        //+ CleanUpAllInfo(CellNumber)
-                        //+ CleanUpAllInfo(FaxNumber)
                         + CleanUpAllInfo(AllEmailsNewLine)).Trim();
                 }
             }
@@ -319,6 +342,17 @@ namespace WebAddressbookTests
                 return "";
             }
             return allInfo + "\r\n";
+        }
+
+        [Column(Name = "id"), PrimaryKey, Identity]
+        public string Id { get; set; }
+
+        public static List<UserData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Contacts select g).ToList();
+            }
         }
     }
 }
