@@ -36,6 +36,56 @@ namespace WebAddressbookTests
             return new List<UserData>(contactCache);
         }
 
+        public void RemoveContactfromGroup(UserData contact, GroupData group)
+        {
+            manager.Navigator.OpenHomePage();
+            SelectGroupToRemoveContactFrom(group.Name);
+            SelectContact(contact.Id);
+            RemoveButtonClick();
+
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        private void RemoveButtonClick()
+        {
+            driver.FindElement(By.Name("remove")).Click(); 
+        }
+
+        private void SelectGroupToRemoveContactFrom(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("qwerty");
+        }
+
+        public void AddContactToGroup(UserData contact, GroupData group)
+        {
+            manager.Navigator.OpenHomePage();
+            ClearGroupFilter();
+            SelectContact(contact.Id);
+            SelectGroupToAdd(group.Name);
+            CommitAddedContactToGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        public void CommitAddedContactToGroup()
+        {
+            driver.FindElement(By.Name("add")).Click();
+        }
+
+        public void SelectGroupToAdd(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+        }
+
+        public void SelectContact(string contactId)
+        {
+            driver.FindElement(By.Id(contactId)).Click();
+        }
+
+        public void ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+        }
+
         public UserData GetContactInformationStringFromEditForm(int index)
         {
             manager.Navigator.OpenHomePage();

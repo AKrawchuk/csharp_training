@@ -88,6 +88,8 @@
     <Compile Include="AppManager\LoginHelper.cs" />
     <Compile Include="AppManager\NavigationHelper.cs" />
     <Compile Include="Model\AddressbookDB.cs" />
+    <Compile Include="Model\GroupContactRaleation.cs" />
+    <Compile Include="Tests\AddingContactToGroupTests.cs" />
     <Compile Include="Tests\AuthTestBase.cs" />
     <Compile Include="Tests\ContactInformationTest.cs" />
     <Compile Include="Tests\ContactModificationTests.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Tests\GroupModificationTests.cs" />
     <Compile Include="Tests\GroupTestBase.cs" />
     <Compile Include="Tests\LoginTests.cs" />
+    <Compile Include="Tests\RemoveContactFromGroup.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Tests\ContactCreationTests.cs" />
     <Compile Include="Model\GroupData.cs" />

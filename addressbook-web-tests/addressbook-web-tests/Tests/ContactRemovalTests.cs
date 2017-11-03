@@ -43,7 +43,7 @@ namespace WebAddressbookTests
         public void ContactRemovalTest_DB()
         {
             List<UserData> oldContacts = UserData.GetAll();                     //-----------16--------------
-            UserData toBeRemoved = 
+            //UserData toBeRemoved = 
 
             if (!app.Contacts.IsContactPresentInList())
             {
@@ -67,7 +67,7 @@ namespace WebAddressbookTests
             app.Auth.Logout();
         }
 
-        [Test]
+        /*[Test]
         public void ContactRemovalTest111()
         {
             app.Contacts.CheckContactCreated();
@@ -86,6 +86,6 @@ namespace WebAddressbookTests
             {
                 Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
             }
-        }
+        }*/
     }
 }
